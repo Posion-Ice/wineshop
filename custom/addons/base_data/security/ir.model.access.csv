@@ -1,7 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_inn_type_readonly,access_inn_type_readonly,model_inn_type,base_data.group_inn_readonly,1,0,0,0
 access_inn_type_user,access_inn_type_user,model_inn_type,base_data.groups_inn_user,1,1,1,0
-access_inn_type_manager,access_inn_type_manager,model_inn_type,base_data.groups_inn_manager,1,1,1,0
+access_inn_type_manager,access_inn_type_manager,model_inn_type,base_data.groups_inn_manager,1,1,1,1
 
 access_inn_room_readonly,access_inn_room_readonly,model_inn_room,base_data.group_inn_readonly,1,0,0,0
 access_inn_room_user,access_inn_room_user,model_inn_room,base_data.groups_inn_user,1,1,1,0
