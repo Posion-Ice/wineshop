@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <!-- 收入项目管理 Tree 视图 -->
+        <record id="consumption_items_in_tree_view" model="ir.ui.view">
+            <field name="name">consumption.items.in.tree.view</field>
+            <field name="model">consumption.items</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 支出项目管理 Tree 视图 -->
+        <record id="consumption_items_out_tree_view" model="ir.ui.view">
+            <field name="name">consumption.items.out.tree.view</field>
+            <field name="model">consumption.items</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 收入项目管理 Form 视图 -->
+        <record id="consumption_items_in_form_view" model="ir.ui.view">
+            <field name="name">consumption.items.in.form.view</field>
+            <field name="model">consumption.items</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>
+                            <field name="name" string="项目名称"/>
+                        </h1>
+                        <notebook>
+                            <page string="项目" name="line_ids">
+                                <field name="line_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- 收入项目管理 Action 视图 -->
+        <record id="consumption_items_in_action" model="ir.actions.act_window">
+            <field name="name">收入项目管理</field>
+            <field name="res_model">consumption.items</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_consumption_type': 'in'}</field>
+            <field name="domain">[('consumption_type', '=', 'in')]</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('consumption_items_in_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('consumption_items_in_form_view')})]"
+            />
+        </record>
+
+        <!-- 支出项目管理 Action 视图 -->
+        <record id="consumption_items_out_action" model="ir.actions.act_window">
+            <field name="name">支出项目管理</field>
+            <field name="res_model">consumption.items</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'default_consumption_type': 'out'}</field>
+            <field name="domain">[('consumption_type', '=', 'out')]</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('consumption_items_out_tree_view')})]"
+            />
+        </record>
+    </data>
+</odoo>

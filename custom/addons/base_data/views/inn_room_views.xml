@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="inn_room_tree_view" model="ir.ui.view">
+            <field name="name">inn.room.tree.view</field>
+            <field name="model">inn.room</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="房间名称"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="inn_room_action" model="ir.actions.act_window">
+            <field name="name">房间</field>
+            <field name="res_model">inn.room</field>
+            <field name="view_mode">tree</field>
+        </record>
+    </data>
+</odoo>

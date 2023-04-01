@@ -1,0 +1,29 @@
+<odoo>
+    <data noupdate="1">
+        <!-- 客栈管理权限 -->
+        <record id="group_inn_readonly" model="res.groups">
+            <field name="name">基础数据 / 客栈管理 / 只读权限</field>
+        </record>
+        <record id="groups_inn_user" model="res.groups">
+            <field name="name">基础数据 / 客栈管理 / 用户权限</field>
+            <field name="implied_ids" eval="[(4, ref('group_inn_readonly'))]"/>
+        </record>
+        <record id="groups_inn_manager" model="res.groups">
+            <field name="name">基础数据 / 客栈管理 / 管理员权限</field>
+            <field name="implied_ids" eval="[(4, ref('groups_inn_user'))]"/>
+        </record>
+
+        <!-- 消费项目权限 -->
+        <record id="group_consumption_items_readonly" model="res.groups">
+            <field name="name">基础数据 / 消费项目 / 只读权限</field>
+        </record>
+        <record id="groups_consumption_items_user" model="res.groups">
+            <field name="name">基础数据 / 消费项目 / 用户权限</field>
+            <field name="implied_ids" eval="[(4, ref('group_consumption_items_readonly'))]"/>
+        </record>
+        <record id="groups_consumption_items_manager" model="res.groups">
+            <field name="name">基础数据 / 消费项目 / 管理员权限</field>
+            <field name="implied_ids" eval="[(4, ref('groups_consumption_items_user'))]"/>
+        </record>
+    </data>
+</odoo>

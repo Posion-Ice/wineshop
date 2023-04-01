@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <menuitem id="base_module_main_menu" name="基础数据"/>
+        <!-- 客栈管理 -->
+        <menuitem id="inn_setting_menu" name="客栈管理" parent="base_module_main_menu" sequence="1"/>
+        <menuitem id="inn_type_menu" name="房型" parent="inn_setting_menu" sequence="1" action="inn_type_action"/>
+        <menuitem id="inn_room_menu" name="房间" parent="inn_setting_menu" sequence="2" action="inn_room_action"/>
+
+        <!-- 消费项目 -->
+        <menuitem id="consumption_items_menu" name="消费项目" parent="base_module_main_menu" sequence="1"/>
+        <menuitem id="consumption_items_in_menu" name="收入项目" parent="consumption_items_menu" sequence="1"
+                  action="consumption_items_in_action"/>
+        <menuitem id="consumption_items_out_menu" name="支出项目" parent="consumption_items_menu" sequence="2"
+                  action="consumption_items_out_action"/>
+    </data>
+</odoo>

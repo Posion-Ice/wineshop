@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="inn_type_tree_view" model="ir.ui.view">
+            <field name="name">inn.type.tree.view</field>
+            <field name="model">inn.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="房型名称"/>
+                    <field name="price" string="门市销售价格"/>
+                    <field name="rooms_num" string="房间数"/>
+                    <field name="state" string="状态" widget="badge"
+                           decoration-success="state == 'enable'"
+                           decoration-danger="state == 'deactivate'"
+                    />
+                    <field name="active" invisible="1"/>
+                    <field name="room_ids" string="房间号" widget="many2many_tags"/>
+
+                    <button name="unlink" string="删除" type="object" attrs="{'invisible': [('active', '=', False)]}"
+                            class="btn btn-danger"/>
+                    <button name="button_deactivate" string="停用" type="object" class="btn btn-warning"
+                            attrs="{'invisible': [('state', 'not in', ['enable'])]}"/>
+                    <button name="button_enable" string="启用" type="object" class="btn btn-success"
+                            attrs="{'invisible': [('state', 'not in', ['deactivate'])]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="inn_type_form_view" model="ir.ui.view">
+            <field name="name">inn.type.from.view</field>
+            <field name="model">inn.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="unlink" string="删除" type="object" attrs="{'invisible': [('active', '=', False)]}"
+                                class="btn btn-danger"/>
+                        <button name="button_deactivate" string="停用" type="object" class="btn btn-warning"
+                                attrs="{'invisible': [('state', 'not in', ['enable'])]}"/>
+                        <button name="button_enable" string="启用" type="object" class="btn btn-success"
+                                attrs="{'invisible': [('state', 'not in', ['deactivate'])]}"/>
+                         <field name="state" widget="statusbar" statusbar_visible="enable,deactivate"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" string="房型名称"/>
+                            </group>
+                            <group>
+                                <field name="price" string="门市销售价格"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="房间号" id="room_ids">
+                                <field name="room_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="inn_type_search_view" model="ir.ui.view">
+            <field name="name">inn.type.search.view</field>
+            <field name="model">inn.type</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="房型名称"/>
+                    <filter string="停用" name="Deactivate" domain="[('state','=','deactivate')]"/>
+                    <filter string="启用" name="Enable" domain="[('state','=','enable')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="inn_type_action" model="ir.actions.act_window">
+            <field name="name">房型</field>
+            <field name="res_model">inn.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
